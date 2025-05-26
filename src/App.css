@@ -1,0 +1,210 @@
+/*#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}*/
+:root {
+  --pastel-red: #f28b82;
+  --pastel-green: #ccff90;
+  --pastel-blue: #aecbfa;
+  --pastel-yellow: #fff475;
+  --pastel-purple: #d7aefb;
+  --pastel-pink: #fdcfe8;
+  --text-dark: #333;
+  --bg-light: #fefefe;
+}
+
+body {
+  background-color: #f8f9fa; /* gris claro de fondo */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.text-black .titulo{
+    font-family: "Rubik Dirt", system-ui;
+    color: #000;
+}
+
+
+
+/* Navbar */
+.navbar {
+  background-color: var(--text-dark) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.img-uniform {
+  width: 100%;
+  height: 300px; /* puedes ajustar la altura como desees */
+  object-fit: cover; /* recorta sin deformar */
+  border-radius: 10px; /* opcional, para bordes redondeados */
+  margin-bottom: 15px; /* espacio entre imágenes */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* sombra suave */
+}
+
+
+/* Secciones */
+#showcase, #services, #designers, #projects, #contact {
+  padding-top: 80px;
+}
+
+/* Encabezados */
+.display-1, .display-3 {
+  color: var(--pastel-blue);
+}
+
+/* Línea decorativa */
+hr.rounded {
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Imágenes de la galería */
+.img-hover {
+  transition: transform 0.3s ease-in-out;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.img-hover:hover {
+  transform: scale(1.03);
+}
+
+/* Tarjetas de equipo */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.pastel-bg-blue {
+  background-color: var(--pastel-blue);
+}
+.animated-section {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1.2s ease-out forwards;
+}
+ .img-thumbnail {
+      transition: transform 0.2s;
+    }
+    .img-thumbnail:hover {
+      transform: scale(1.05);
+    }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Botón principal 
+.btn-danger {
+  background-color: var(--text-dark);
+  border: none;
+}
+.btn-danger:hover {
+  background-color: #3d7bde;
+}*/
+
+/* Footer */
+/* styles.css */
+
+form {
+  transition: box-shadow 0.3s ease;
+}
+
+form:hover {
+  box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+}
+
+input.form-control,
+textarea.form-control {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+input.form-control:focus,
+textarea.form-control:focus {
+  border-color: #0d6efd; /* primary */
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+button {
+  border-radius: 0.75rem;
+}
+
+footer {
+  background-color: #f8f9fa; /* Fondo claro */
+  color: #212529; /* Texto oscuro */
+  border-top: 3px solid #0d6efd; /* Borde superior azul Bootstrap */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer-texto {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  max-width: 600px;
+}
+
+footer a {
+  color: #212529;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #0d6efd; /* Hover azul */
+}
+
+.iconos-redes-sociales i {
+  transition: transform 0.3s ease;
+}
+
+.iconos-redes-sociales i:hover {
+  transform: scale(1.2);
+}
+.iconos-redes-sociales {
+  margin: 0 10px;
+}
+
