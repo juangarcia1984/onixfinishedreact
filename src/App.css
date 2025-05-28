@@ -59,6 +59,24 @@ body {
     font-family: "Rubik Dirt", system-ui;
     color: #000;
 }
+/*login*/
+img.object-fit-cover {
+  object-fit: cover;
+}
+
+form label {
+  color: #333;
+}
+
+a {
+  color: #dc3545;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 
 

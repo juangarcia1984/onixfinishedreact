@@ -9,28 +9,51 @@ import Loginpage from "./frontend/pages/Loginpage"
 import Notfound from "./frontend/pages/Notfoundpage"
 import Dashboardpages from "./admin/pages/Dashboardpages"
 import ContactFormpages from "./frontend/pages/ContactFormpages"
+import Adminpages from "./admin/pages/Adminpages"
+import Userpages from "./admin/pages/Userpages"
+import Reportspages from "./admin/pages/Reportspages"
+import Publicroutes from "./components/auth/Publicroutes"
+import Privateroutes from "./components/auth/Privateroutes"
+import Rolesroutes from "./components/auth/Rolesroutes";
+import Authcontext from "./context/Authcontext"
 import '/public/plantilla-onix/css/estilos.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '/public/Plantilla dashboard/css/sb-admin-2.css';
+
 
 
 
 function App() {
   return (
     <>
+    <Authcontext>
       <Routes>
-        <Route path="/" element={<Homepages />} />
-        <Route path="/showcase" element={<Showcasepage />} />
-        <Route path="/project" element={<Projectpages />} />
-        <Route path="/services" element={<Servicespages />} />
-        <Route path="/gallery" element={<Gallerypages />} />
-        <Route path="/contact" element={<ContactFormpages />} />
-        <Route path="/login" element={<Loginpage />} />
-        <Route path="/register" element={<Registerpage />} />
+        <Route element={<Publicroutes />}>
+          <Route path="/" element={<Homepages />} />
+          <Route path="/showcase" element={<Showcasepage />} />
+          <Route path="/project" element={<Projectpages />} />
+          <Route path="/services" element={<Servicespages />} />
+          <Route path="/gallery" element={<Gallerypages />} />
+          <Route path="/contact" element={<ContactFormpages />} />
+          <Route path="/login" element={<Loginpage />} />
+          <Route path="/register" element={<Registerpage />} />
+       </Route>
+
+       <Route element={<Privateroutes />}>
+         <Route element={<Rolesroutes allowedroles={['admin']} />}>
+           <Route path="/dashboard" element={<Dashboardpages />} />
+           <Route path="/dashboard/admin" element={<Adminpages />} />
+           <Route path="/dashboard/reports" element={<Reportspages />} />
+         </Route>
+         <Route element={<Rolesroutes allowedroles={['user']} />}>
+           <Route path="/dashboard/user" element={<Userpages />} />
+         </Route>
+       </Route>
+
+      
         <Route path="*" element={<Notfound />} />
       </Routes>
-      <Routes>
-        <Route path="/dashboard" element={<Dashboardpages />} />
-      </Routes>
+    </Authcontext>
     </>
   )
 }
