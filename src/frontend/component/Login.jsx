@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Login() {
   return (
-    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+    <div className="container d-flex align-items-center justify-content-center min-vh-100 container mt-5 pt-5" id="login">
       <div className="row shadow rounded bg-white overflow-hidden" style={{ maxWidth: 800, width: '100%' }}>
 
         {/* Columna de la imagen */}

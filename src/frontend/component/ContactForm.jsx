@@ -9,9 +9,9 @@ export default function ContactForm() {
 
     return (
         <div>
-            <div className="mt-5" id="contact">
-                <h1 className="display-4 fw-semibold text-dark">Contact</h1>
-                <hr style={{ width: "50%", border: "3px solid blue" }} className="rounded" />
+            <div className="mt-5 " id="contact">
+                <h1 className="display-4 fw-semibold text-center ">Contact</h1>
+                <hr className="mx-auto border-3 border-primary w-50" />
                 <p>Do you want us to style your home? Fill out the form and give us the details — we love meeting new people!</p>
                 <form onSubmit={handleSubmit} className="p-4 rounded shadow bg-white" style={{ maxWidth: "100%", margin: "auto" }}>
                     <div className="mb-3">
