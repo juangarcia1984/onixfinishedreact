@@ -53,7 +53,7 @@ export default function Projectdetails() {
       <div className="container mt-5 pt-5">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <img src={project.imageUrl} alt={project.name} className=" rounded shadow mb-3 imgproyectdetails" />
+            <img src={project.imageUrl} alt={project.name} className=" rounded shadow mb-3 imgproyectdetails img-fluid" />
           </div>
           <div className="col-md-6 d-flex flex-column justify-content-center">
             <h2 className="mb-3">{project.name}</h2>
@@ -64,7 +64,7 @@ export default function Projectdetails() {
                 <p>{details.detailedDescription}</p>
               </div>
             )}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form2'>
               <h5 className="mb-3">Interested in this project?</h5>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">Name</label>
