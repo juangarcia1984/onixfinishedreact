@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Project() {
+    const [projects, setProjects] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:8080/api/projects')
+            .then(res => res.ok ? res.json() : [])
+            .then(data => setProjects(data));
+    }, []);
+
     return (
         <div>
             <div className="mt-5" id="designers">
@@ -14,7 +21,7 @@ export default function Project() {
             </div>
             <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/wallpaper" className="text-decoration-none" id='wallpaper'>
+                    <Link to={`/projects/1`} className="text-decoration-none" id='1'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imgalcoba.webp" alt="Wallpaper" className="card-img-top img-fluid img-project" />
                             <div className="card-body">
@@ -26,7 +33,7 @@ export default function Project() {
                     </Link>
                 </div>
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/interior-paint" className="text-decoration-none" id='interior-paint'>
+                    <Link to={`/projects/2`} className="text-decoration-none" id='2'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imginterior4.webp" alt="Interior paint" className="card-img-top img-fluid img-project" />
                             <div className="card-body">
@@ -38,7 +45,7 @@ export default function Project() {
                     </Link>
                 </div>
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/wooden-floors" className="text-decoration-none" id='wooden-floors'>
+                    <Link to={`/projects/3`} className="text-decoration-none" id='3'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imgpisomadera.webp" alt="Wooden floors" className="card-img-top img-fluid img-project" />
                             <div className="card-body">
@@ -50,7 +57,7 @@ export default function Project() {
                     </Link>
                 </div>
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/moldings" className="text-decoration-none" id='moldings'>
+                    <Link to={`/projects/4`} className="text-decoration-none" id='4'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imgacabados1.webp" alt="Moldings" className="card-img-top img-fluid img-project" />
                             <div className="card-body">
@@ -62,7 +69,7 @@ export default function Project() {
                     </Link>
                 </div>
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/accent-wall" className="text-decoration-none" id='accent-wall'>
+                    <Link to={`/projects/5`} className="text-decoration-none" id='5'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imginterior2.webp" alt="Accent wall" className="card-img-top img-fluid img-project" />
                             <div className="card-body">
@@ -74,7 +81,7 @@ export default function Project() {
                     </Link>
                 </div>
                 <div className="col section-services pastel-bg-blue">
-                    <Link to="/projects/cabinets-painting" className="text-decoration-none" id='cabinets-painting'>
+                    <Link to={`/projects/6`} className="text-decoration-none" id='6'>
                         <div className="card h-100 bg-light">
                             <img src="/public/plantilla-onix/imagenes/imgcocina2.webp" alt="Cabinets Painting" className="card-img-top img-fluid img-project" />
                             <div className="card-body">

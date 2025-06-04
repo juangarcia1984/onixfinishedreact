@@ -53,7 +53,7 @@ export default function Projectdetails() {
       <div className="container mt-5 pt-5">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <img src={project.imageUrl} alt={project.name} className="img-fluid rounded shadow mb-3" />
+            <img src={project.imageUrl} alt={project.name} className=" rounded shadow mb-3 imgproyectdetails" />
           </div>
           <div className="col-md-6 d-flex flex-column justify-content-center">
             <h2 className="mb-3">{project.name}</h2>
