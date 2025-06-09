@@ -11,7 +11,7 @@ export default function Publicroutes() {
    let redirectPath = user.rol === 'admin'
       ? '/dashboard'
       : user.rol === 'user'
-        ? '/dashboard/user'
+        ? '/'
         : '/login';
     return <Navigate to={redirectPath} replace />
   }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createContext } from 'react';
-import { createContex, useContext, useEffect, useState } from 'react';
+import {  useContext, useEffect, useState } from 'react';
 
 const AuthProvider = createContext();
 

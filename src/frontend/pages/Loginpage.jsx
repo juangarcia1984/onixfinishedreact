@@ -1,35 +1,54 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../component/Footer'
-import Navbar from '../component/navbar'
+import Navbar from '../component/Navbar'
 import { useForm } from 'react-hook-form'
-import datos from '/src/assets/data.json';
 import { useAuth } from '../../context/Authcontext'
-import getdasboard from '../../components/common/Getdasboard'
+
 
 
 
 export default function Loginpage() {
-  let { Login } = useAuth();
-  let navigate = useNavigate();
-  let { register, handleSubmit } = useForm();
-  const onSubmit = (dataform) => {
-    console.log(dataform);
+  const { Login } = useAuth();
+  const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-    let userverify = datos.usuarios.find((usuarios) => {
-      return usuarios.username === dataform.username && usuarios.password === dataform.password;
-    });
-    console.log('user : ', userverify);
-    if (userverify) {
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: data.username,
+          password: data.password,
+          email: data.email,
+          rol: data.rol,
+        }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.message || 'Login failed. Please try again.');
+        return;
+      }
+      const userverify = await response.json();
+      console.log('user :', userverify);
+
       Login(userverify);
-      navigate(getdasboard(userverify.rol));
-    } else {
-      
-      alert('Incorrect username or password');
+     if (userverify.rol === 'admin') {
+            navigate('/dashboard'); // Redirect to admin dashboard
+        } else if (userverify.rol === 'user') {
+            navigate('/'); // Redirect to user dashboard
+        } else {
+            alert('Unknown role. Please contact support.');
+        }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred. Please try again.');
     }
-
-
-  }
+    
+  };
   return (
     <div>
       <Navbar />
@@ -42,8 +61,7 @@ export default function Loginpage() {
               src="/public/plantilla-onix/imagenes/Untitled design.png"
               alt="Imagen decorativa"
               className="img-fluid"
-              style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}
-            />
+              style={{ maxWidth: '100%', height: 'auto', objectFit: 'contain' }}/>
           </div>
 
 
@@ -54,10 +72,8 @@ export default function Loginpage() {
                 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                 alt="Logo"
                 className="rounded-circle mb-3 bi bi-person-circle"
-                style={{ width: "35%" }}
-              />
-              <h2 className="text-dark ">Login</h2>
-
+                style={{ width: "35%" }} />
+                <h2 className="text-dark ">Login</h2>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -65,17 +81,31 @@ export default function Loginpage() {
                 <label htmlFor="username" className="form-label"><strong>User</strong></label>
                 <input {...register("username",{required:true})} type="text" className="form-control" id="username" name="username" placeholder="Enter your username"  />
               </div>
+              {errors.username && <span className="text-danger">This field is required</span>}
               <div className="mb-3">
                 <label htmlFor="password" className="form-label"><strong>Password</strong></label>
                 <input {...register("password",{required:true})} type="password" className="form-control" id="password" name="password" placeholder="Enter your password" required />
               </div>
+              {errors.password && <span className="text-danger">This field is required</span>}
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label"><strong>Email</strong></label>
+                <input {...register("email",{required:true})} type="email" className="form-control" id="email" name="email" placeholder="Enter your email" required />
+              </div>
+              <div className="mb-3">
+                  <label htmlFor="rol" className="form-label"><strong>Role</strong></label>
+                  <select {...register("rol", { required: true })} className="form-control" id="rol">
+                  <option value="">Select Role</option>
+                  <option value="user">User </option>
+                  <option value="admin">Admin</option>
+             </select>
+            </div>
+              {errors.email && <span className="text-danger">This field is required</span>}
               <div className="form-check mb-3">
                 <input type="checkbox" className="form-check-input" id="rememberMe" />
                 <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
               </div>
               <button type="submit" className="btn w-100" style={{ backgroundColor: '#000', color: '#fff' }}>Login</button>
             </form>
-
             <div className="d-flex justify-content-between align-items-center mt-3">
               <button type="button" className="btn " style={{ backgroundColor: '#000', color: '#fff' }}>Cancel</button>
               <small className="text-muted">Forgot your <a href="#">password?</a></small>
@@ -88,3 +118,4 @@ export default function Loginpage() {
     </div>
   )
 }
+

@@ -44,13 +44,14 @@ function App() {
        </Route>
 
        <Route element={<Privateroutes />}>
+         <Route path="/login" element={<Loginpage />} />
          <Route element={<Rolesroutes allowedroles={['admin']} />}>
            <Route path="/dashboard" element={<Dashboardpages />} />
            <Route path="/dashboard/admin" element={<Adminpages />} />
            <Route path="/dashboard/reports" element={<Reportspages />} />
          </Route>
          <Route element={<Rolesroutes allowedroles={['user']} />}>
-           <Route path="/dashboard/user" element={<Userpages />} />
+           <Route path="/" element={<Userpages />} />
          </Route>
        </Route>
 
