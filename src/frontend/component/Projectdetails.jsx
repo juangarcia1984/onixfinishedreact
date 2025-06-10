@@ -15,37 +15,47 @@ export default function Projectdetails() {
       .then(res => res.ok ? res.json() : Promise.reject('Not found'))
       .then(data => {
         setProject(data);
-        
         setDetails(data.projectDetails);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [projectId]);
+      }, [projectId]);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
     
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setFormStatus('');
-    fetch(`http://localhost:8080/api/project-inquiries`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...form,
-        projectDetailsId: details?.id 
-      })
-    })
-      .then(res => res.ok ? res.json() : Promise.reject('Error'))
-      .then(() => {
-        setFormStatus('Message sent!');
-        setForm({ name: '', email: '', message: '' });
-      })
-      .catch(() => setFormStatus('Error sending message.'));
-  };
+    
 
+    if ( !details?.id ){
+      setFormStatus('Error: Project details ID is missing.');
+      return
+    }
+    
+
+    try{
+      const response = await fetch(`http://localhost:8080/api/project-inquiries/`,{
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(form)
+      });
+    
+     if (!response.ok ){
+      const errorData = await response.json();
+      setForm ({name: '', email: '', message: ''})
+      return
+     }
+     setFormStatus('Message sent!');
+      setForm({ name: '', email: '', message: '' });
+      }catch (error) {
+        setFormStatus(`Error sending message: ${error.message}`);
+      }
+    };
+     
   if (loading) return <div className="container mt-5 pt-5">Loading...</div>;
   if (!project) return <div className="container mt-5 pt-5">Project not found.</div>;
 
