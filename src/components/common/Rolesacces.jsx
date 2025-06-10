@@ -1,10 +1,9 @@
 import React from 'react'
 
 
-export default function Rolesaccess() {
-  return {
+const rolesacces = {
     admin: ['/dashboard', '/dashboard/admin', '/dashboard/reports'],
-    user: ['/dashboard/user'],
+    user: ['/'],
   };
-}
+export default rolesacces;
 

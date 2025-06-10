@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Footer from '../component/Footer'
-import Navbar from '../component/Navbar'
+import Navbar from '../component/navbar'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../context/Authcontext'
 

@@ -3,7 +3,7 @@ import { useAuth } from '../../context/Authcontext';
 import { Navigate, Outlet } from 'react-router-dom';
 import Loadingspiner from '../common/loadingspiner';
 
-export default function Rolesroutes({ allowedroles }) {
+export default function Rolesroutes({ allowedroles = [] }) {
   let { user, loading } = useAuth();
   if (loading) {
     return <Loadingspiner />;
