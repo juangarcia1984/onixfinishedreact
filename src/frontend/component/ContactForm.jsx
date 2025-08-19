@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState, useEffect    } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 export default function ContactForm() {
     const [formStatus, setFormStatus] = useState('');
@@ -60,10 +59,10 @@ export default function ContactForm() {
                         <label htmlFor="message" className="form-label fw-semibold">Message</label>
                         <textarea id="message" className="form-control" name="message" rows="4" required placeholder="Write your message here..." value={formData.message} onChange={handleChange}></textarea>
                     </div>
+                    {formStatus && <p className="text-center my-2">{formStatus}</p>}
                     <button type="submit" className="btn btn-primary btn-lg w-100 shadow-sm">Send Message</button>
                 </form>
             </div>
         </div>
     )
 }
-

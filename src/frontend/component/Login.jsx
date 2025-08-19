@@ -23,14 +23,13 @@ export default function Login() {
         body: JSON.stringify({ username, password, email, rol }),
         });
         if (!response.ok) {
-          const error = await response.json();
-          setError(error.message || 'Login failed. Please try again.');
+          const errorData = await response.json();
+          setError(errorData.message || 'Login failed. Please try again.');
         }else {
-          setError('An error occurred. Please try again.');
-          window.location.href = '/login'; // Redirección exitosa
+          window.location.href = '/dashboard'; // Redirección exitosa
         }
       } catch (error) {
-        setError('An error occurred. Please try again.');
+        setError(error.message || 'An error occurred. Please try again.');
       }
     }
   };

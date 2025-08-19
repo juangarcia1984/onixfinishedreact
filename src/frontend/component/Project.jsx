@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Projects() {
-    const [projects, setProjects] = useState([]);
-    useEffect(() => {
-        fetch('http://localhost:8080/api/projects')
-            .then(res => res.ok ? res.json() : [])
-            .then(data => setProjects(data));
-    }, []);
-
     return (
         <div>
             <div className="mt-5" id="designers">

@@ -15,7 +15,7 @@ export default function Projectdetails() {
       .then(res => res.ok ? res.json() : Promise.reject('Not found'))
       .then(data => {
         setProjects(data);
-        setProject_Details(project_details);
+        setProject_Details(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -41,6 +41,7 @@ export default function Projectdetails() {
     
      if (!response.ok ){
       const errorData = await response.json();
+      setFormStatus(`Error: ${errorData.message || 'Failed to send message.'}`);
       setForm ({name: '', email: '', message: ''})
       return
      }
